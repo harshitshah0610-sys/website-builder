@@ -1,0 +1,114 @@
+/* ============================================
+   WebFlow AI — Base Styles (Fixed)
+   ============================================ */
+
+:root {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Custom Selection ── */
+::selection { background: var(--accent-primary); color: #fff; }
+
+/* ── Custom Scrollbars ── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--builder-bg); }
+::-webkit-scrollbar-thumb { background: var(--builder-border); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: var(--builder-text-dim); }
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+button, input, textarea, select { font-family: inherit; font-size: inherit; border: none; outline: none; background: none; color: inherit; }
+button { cursor: pointer; }
+
+body {
+  margin: 0;
+  background: var(--builder-bg);
+  color: var(--builder-text);
+  font-family: var(--font-body);
+  overflow: hidden;
+  height: 100vh;
+}
+
+/* ── Buttons ── */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 8px 16px; border-radius: var(--radius-md); border: 1px solid var(--builder-border);
+  background: var(--builder-surface-2); color: var(--builder-text); cursor: pointer;
+  font-weight: 500; font-size: var(--text-sm);
+  transition: all 0.2s var(--ease-premium);
+  white-space: nowrap;
+}
+.btn:hover { background: var(--builder-surface-3); border-color: var(--accent-primary); transform: translateY(-1px); }
+.btn-primary { background: var(--accent-primary); color: #fff; border-color: transparent; }
+.btn-primary:hover { background: var(--accent-hover); box-shadow: 0 4px 12px var(--accent-glow); }
+.btn-secondary { background: var(--builder-surface-3); border-color: var(--builder-border); }
+.btn-secondary:hover { border-color: var(--accent-primary); }
+.btn-ghost { background: transparent; border-color: transparent; }
+.btn-ghost:hover { background: var(--builder-surface-2); }
+.btn-sm { padding: 6px 12px; font-size: var(--text-xs); }
+.btn-lg { padding: 12px 24px; font-size: var(--text-md); }
+.btn-icon { width: 34px; height: 34px; padding: 0; display: flex; align-items: center; justify-content: center; border-radius: var(--radius-md); }
+.btn-icon svg { width: 18px; height: 18px; }
+.btn-icon-tiny { width: 22px; height: 22px; padding: 0; display: flex; align-items: center; justify-content: center; border-radius: 4px; background: var(--builder-surface-3); cursor: pointer; font-size: 10px; color: var(--builder-text-muted); border: 1px solid var(--builder-border); }
+.btn-icon-tiny:hover { background: var(--accent-danger); color: #fff; border-color: var(--accent-danger); }
+
+/* ── Toast Notifications ── */
+.toast-container {
+  position: fixed;
+  top: var(--space-4);
+  right: var(--space-4);
+  z-index: var(--z-toast);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  pointer-events: none;
+}
+
+.toast {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background: var(--builder-surface);
+  border: 1px solid var(--builder-border);
+  border-radius: var(--radius-md);
+  color: var(--builder-text);
+  font-size: var(--text-sm);
+  box-shadow: var(--shadow-lg);
+  pointer-events: auto;
+  animation: toastIn 0.3s var(--ease-premium);
+  backdrop-filter: blur(12px);
+  min-width: 260px;
+}
+
+@keyframes toastIn {
+  from { opacity: 0; transform: translateX(40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.toast-success { border-color: #22c55e; }
+.toast-success span:first-child { color: #22c55e; }
+.toast-error { border-color: var(--accent-danger); }
+.toast-error span:first-child { color: var(--accent-danger); }
+.toast-info { border-color: var(--accent-secondary); }
+.toast-info span:first-child { color: var(--accent-secondary); }
+
+/* ── Tooltip ── */
+.tooltip { position: relative; }
+.tooltip::after {
+  content: attr(data-tooltip);
+  position: absolute; bottom: -32px; left: 50%; transform: translateX(-50%);
+  padding: 4px 8px; background: var(--builder-surface-3); color: var(--builder-text);
+  font-size: 11px; white-space: nowrap; border-radius: var(--radius-sm);
+  opacity: 0; pointer-events: none; transition: opacity 0.2s;
+  z-index: var(--z-toast);
+}
+.tooltip:hover::after { opacity: 1; }
+
+/* ── Fade Out Utility ── */
+.fx-fade-out {
+  animation: fadeOutAnim 0.6s var(--ease-premium) forwards;
+}
+@keyframes fadeOutAnim {
+  to { opacity: 0; transform: scale(0.97); pointer-events: none; }
+}

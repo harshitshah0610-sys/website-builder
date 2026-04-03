@@ -1,0 +1,107 @@
+/* ============================================
+   WebFlow AI — Design Tokens (Complete)
+   ============================================ */
+
+:root {
+  /* ── Luxury Carbon Palette ── */
+  --builder-bg:           #050508;
+  --builder-surface:      #0e0e13;
+  --builder-surface-2:    #16161f;
+  --builder-surface-3:    #1e1e2b;
+  --builder-border:       #262635;
+  --builder-border-hover: #36364a;
+  --builder-text:         #f0f0f5;
+  --builder-text-muted:   #9494b8;
+  --builder-text-dim:     #5c5c7a;
+
+  /* ── Elite Accent Colors ── */
+  --accent-primary:       #8257e5;
+  --accent-primary-rgb:   130, 87, 229;
+  --accent-hover:         #9672ed;
+  --accent-active:        #6b42cf;
+  --accent-glow:          rgba(130, 87, 229, 0.25);
+  --accent-secondary:     #22d3ee;
+  --accent-secondary-rgb: 34, 211, 238;
+  --accent-danger:        #ef4444;
+
+  /* ── Gradients ── */
+  --gradient-primary:     linear-gradient(135deg, #8257e5, #c084fc);
+  --gradient-dark:        linear-gradient(180deg, rgba(22,22,31,0) 0%, rgba(5,5,8,1) 100%);
+  --gradient-glass:       linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.01));
+
+  /* ── Typography ── */
+  --font-body:            'Inter', -apple-system, system-ui, sans-serif;
+  --font-heading:         'Outfit', 'Inter', sans-serif;
+
+  /* ── Type Scale ── */
+  --text-2xs:  0.65rem;
+  --text-xs:   0.75rem;
+  --text-sm:   0.875rem;
+  --text-md:   1rem;
+  --text-lg:   1.125rem;
+  --text-xl:   1.25rem;
+  --text-2xl:  1.5rem;
+  --text-3xl:  1.875rem;
+  --text-4xl:  2.25rem;
+
+  /* ── Font Weights ── */
+  --weight-light:     300;
+  --weight-normal:    400;
+  --weight-medium:    500;
+  --weight-semibold:  600;
+  --weight-bold:      700;
+  --weight-extrabold: 800;
+  --weight-black:     900;
+
+  /* ── Spacing Scale ── */
+  --space-1:   0.25rem;
+  --space-2:   0.5rem;
+  --space-3:   0.75rem;
+  --space-4:   1rem;
+  --space-5:   1.25rem;
+  --space-6:   1.5rem;
+  --space-8:   2rem;
+  --space-10:  2.5rem;
+  --space-12:  3rem;
+  --space-16:  4rem;
+  --space-20:  5rem;
+  --space-32:  8rem;
+
+  /* ── Radii ── */
+  --radius-sm:    6px;
+  --radius-md:    10px;
+  --radius-lg:    14px;
+  --radius-xl:    18px;
+  --radius-2xl:   24px;
+  --radius-full:  9999px;
+
+  /* ── Elevation & Shadows ── */
+  --shadow-sm:    0 1px 2px rgba(0,0,0,0.5);
+  --shadow-md:    0 4px 16px rgba(0,0,0,0.6);
+  --shadow-lg:    0 12px 40px rgba(0,0,0,0.8);
+  --shadow-xl:    0 20px 60px rgba(0,0,0,0.9);
+  --shadow-glow:  0 0 30px var(--accent-glow);
+
+  /* ── Transitions ── */
+  --ease-premium: cubic-bezier(0.19, 1, 0.22, 1);
+  --ease-out:     cubic-bezier(0.33, 1, 0.68, 1);
+  --ease-bounce:  cubic-bezier(0.34, 1.56, 0.64, 1);
+  --duration-fast:   150ms;
+  --duration-normal: 350ms;
+  --duration-slow:   600ms;
+
+  /* ── Layout Dimensions ── */
+  --toolbar-height: 52px;
+  --sidebar-width:  270px;
+  --panel-width:    300px;
+
+  /* ── Z-Index Tiers ── */
+  --z-canvas:    1;
+  --z-selected:  10;
+  --z-sidebar:   20;
+  --z-panel:     20;
+  --z-toolbar:   30;
+  --z-overlay:   100;
+  --z-modal:     200;
+  --z-toast:     300;
+}

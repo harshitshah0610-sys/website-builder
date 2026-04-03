@@ -1,0 +1,76 @@
+/* ============================================
+   WebFlow AI — Premium Visual Effects (CSS)
+   ============================================ */
+
+/* ── 3D Foundation ── */
+.fx-3d-tilt {
+  transform-style: preserve-3d;
+  transition: transform 0.15s cubic-bezier(0.23, 1, 0.32, 1);
+  will-change: transform;
+}
+
+.fx-3d-depth {
+  perspective: 1200px;
+}
+
+.fx-depth-layer {
+  transform: translateZ(50px);
+  transition: transform 0.2s ease-out;
+  transform-style: preserve-3d;
+}
+
+/* ── Liquid Glass Refined ── */
+.fx-liquid-glass {
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.fx-liquid-glass::before {
+  content: '';
+  position: absolute;
+  top: -100%;
+  left: -100%;
+  width: 300%;
+  height: 300%;
+  background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 60%);
+  animation: liquidMove 10s infinite linear;
+  pointer-events: none;
+}
+
+@keyframes liquidMove {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(10%, 10%) rotate(180deg); }
+  100% { transform: translate(0, 0) rotate(360deg); }
+}
+
+/* ── Neon & Glow ── */
+.fx-neon-glow {
+  text-shadow: 0 0 10px var(--site-accent), 0 0 20px var(--site-accent), 0 0 40px var(--site-accent);
+  color: #fff;
+}
+
+.fx-gradient-bg {
+  background: linear-gradient(45deg, var(--site-primary), var(--site-accent), var(--site-secondary));
+  background-size: 300% 300%;
+  animation: gradientMove 8s ease infinite;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ── Scroll Animations ── */
+.fx-fade-in { opacity: 0; transition: opacity 0.8s ease-out; }
+.fx-fade-in.visible { opacity: 1; }
+
+.fx-slide-up { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1); }
+.fx-slide-up.visible { opacity: 1; transform: translateY(0); }
+
+.fx-scale-in { opacity: 0; transform: scale(0.9); transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+.fx-scale-in.visible { opacity: 1; transform: scale(1); }

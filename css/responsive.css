@@ -1,0 +1,39 @@
+/* ============================================
+   WebFlow AI — Responsive Builder UI (Fixed)
+   ============================================ */
+
+@media (max-width: 1200px) {
+  .properties-panel { width: 260px; }
+  .btn-accent-subtle { font-size: var(--text-xs); padding: var(--space-1) var(--space-2); }
+}
+
+@media (max-width: 1000px) {
+  .properties-panel { width: 240px; }
+  .toolbar-logo-text { font-size: var(--text-sm); }
+  .panel-ctrl-btn { width: 22px; height: 22px; }
+  .panel-ctrl-btn svg { width: 11px; height: 11px; }
+}
+
+@media (max-width: 900px) {
+  .sidebar { width: 220px; }
+  .properties-panel { display: none; }
+  .btn-accent-subtle span:not(.tooltip) { display: none; }
+}
+
+@media (max-width: 700px) {
+  .sidebar {
+    position: fixed; left: -280px;
+    top: var(--toolbar-height); bottom: 0;
+    width: var(--sidebar-width);
+    transition: left 0.3s var(--ease-out);
+    z-index: var(--z-modal);
+    box-shadow: none;
+  }
+  .sidebar.open { left: 0; box-shadow: var(--shadow-xl); }
+  .toolbar-logo-text { display: none; }
+  .toolbar-logo { border-right: none; margin-right: 0; padding-right: 0; }
+  .btn-sm span:not(.tooltip)::after { display: none; }
+  .device-toggle { display: none; }
+  .btn-accent-subtle { display: none !important; }
+  .panel-controls { display: none; }
+}
