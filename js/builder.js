@@ -393,12 +393,12 @@ const Builder = {
       const customPrimary = this.panelBody.querySelector('#custom-primary');
       const customAccent = this.panelBody.querySelector('#custom-accent');
       if (customPrimary) {
-        const primaryVal = getComputedStyle(canvas).getPropertyValue('--site-primary').trim();
+        const primaryVal = getComputedStyle(this.canvas).getPropertyValue('--site-primary').trim();
         customPrimary.value = primaryVal.startsWith('#') ? primaryVal : '#ffffff';
         customPrimary.addEventListener('input', (e) => ThemeManager.setCustomColor('--site-primary', e.target.value));
       }
       if (customAccent) {
-        const accentVal = getComputedStyle(canvas).getPropertyValue('--site-accent').trim();
+        const accentVal = getComputedStyle(this.canvas).getPropertyValue('--site-accent').trim();
         customAccent.value = accentVal.startsWith('#') ? accentVal : '#ffffff';
         customAccent.addEventListener('input', (e) => ThemeManager.setCustomColor('--site-accent', e.target.value));
       }

@@ -14,7 +14,7 @@ const Landing = {
     if (token) {
       this.hideLanding();
       const isReset = window.location.search.includes('reset=true');
-      const hasContent = AppState.builder.pages && AppState.builder.pages[0] && AppState.builder.pages[0].content.trim() !== '';
+      const hasContent = AppState.builder.pages && AppState.builder.pages.length > 0 && AppState.builder.pages[0].content && AppState.builder.pages[0].content.trim() !== '';
       if (isReset || !hasContent) {
         if (typeof Onboarding !== 'undefined') Onboarding.init();
       } else {

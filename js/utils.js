@@ -138,6 +138,7 @@ const AppState = {
 
   // Builder state
   builder: {
+    pages: [],
     components: [],
     selectedId: null,
     deviceMode: 'desktop', // desktop | tablet | mobile
