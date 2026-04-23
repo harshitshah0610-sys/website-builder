@@ -8,8 +8,13 @@ const Onboarding = {
 
   init() {
     // Check if onboarding was already completed
+    const isReset = window.location.search.includes('reset=true');
+    if (isReset) {
+       Utils.save('onboarding_completed', false);
+    }
+    
     const completed = Utils.load('onboarding_completed', false);
-    if (completed) {
+    if (completed && !isReset) {
       this.showBuilder();
       Builder.init();
       return;
@@ -41,7 +46,7 @@ const Onboarding = {
 
   renderCard(title, desc, content, showBack = true) {
     this.container.innerHTML = `
-      <div class="onboarding-card fx-slide-up">
+      <div class="onboarding-card">
         <div class="onboarding-header">
           <h2 class="onboarding-title">${title}</h2>
           <p class="onboarding-desc">${desc}</p>
@@ -63,24 +68,51 @@ const Onboarding = {
   },
 
   renderStep1() {
-    const types = [
-      { id: 'business', name: 'Business', icon: 'hero' },
-      { id: 'portfolio', name: 'Portfolio', icon: 'gallery' },
-      { id: 'creative', name: 'Creative', icon: 'glow' },
-      { id: 'startup', name: 'Startup', icon: 'features' }
-    ];
+    const bType = AppState.onboarding.businessType || 'ind-dhaba';
+    // Ensure default is set immediately for the form
+    AppState.onboarding.businessType = bType;
+    
+    const isSel = (val) => bType === val ? 'selected' : '';
     const content = `
-      <div class="onboarding-grid">
-        ${types.map(t => `
-          <div class="type-option ${AppState.onboarding.businessType === t.id ? 'selected' : ''}" 
-               onclick="Onboarding.selectType('${t.id}')">
-            <div class="type-icon">${Icons.get(t.icon, 32)}</div>
-            <div class="type-name">${t.name}</div>
-          </div>
-        `).join('')}
+      <div class="onboarding-form-group">
+        <label class="label">Select Business Type</label>
+        <select class="input" style="height:48px;font-size:16px;background:var(--builder-surface)" onchange="Onboarding.selectType(this.value)">
+          <optgroup label="Restaurant">
+            <option value="ind-dhaba" ${isSel('ind-dhaba')}>Indian Dhaba</option>
+            <option value="ind-cafe" ${isSel('ind-cafe')}>Cafe / Chai Shop</option>
+            <option value="ind-finedining" ${isSel('ind-finedining')}>Fine Dining</option>
+          </optgroup>
+          <optgroup label="E-commerce">
+            <option value="ind-clothes" ${isSel('ind-clothes')}>Ethnic Boutique / Clothes</option>
+            <option value="ind-localshop" ${isSel('ind-localshop')}>Local Kirana Shop</option>
+          </optgroup>
+          <optgroup label="Education">
+            <option value="ind-coaching" ${isSel('ind-coaching')}>Coaching Classes</option>
+            <option value="ind-school" ${isSel('ind-school')}>Local School</option>
+          </optgroup>
+          <optgroup label="Portfolio">
+            <option value="ind-freelancer" ${isSel('ind-freelancer')}>Freelancer / Developer</option>
+          </optgroup>
+          <optgroup label="Real Estate">
+            <option value="ind-realestate" ${isSel('ind-realestate')}>Property / Real Estate</option>
+          </optgroup>
+          <optgroup label="Fitness">
+            <option value="ind-gym" ${isSel('ind-gym')}>Gym / Fitness Studio</option>
+            <option value="ind-ayurveda" ${isSel('ind-ayurveda')}>Yoga / Ayurveda Studio</option>
+          </optgroup>
+          <optgroup label="Event Services">
+            <option value="ind-heritage" ${isSel('ind-heritage')}>Wedding Planner</option>
+          </optgroup>
+        </select>
+        <p style="margin-top:15px;font-size:13px;color:var(--builder-text-mutated);">We will instantly preview this theme and auto-generate content matched precisely for your industry.</p>
       </div>
     `;
-    this.renderCard('What are you building?', 'Choose a category to get tailored templates.', content, false);
+    this.renderCard('What are you building?', 'Choose a tailored template.', content, false);
+    
+    // Auto-apply theme preview in background
+    setTimeout(() => {
+      if (typeof ThemeManager !== 'undefined') ThemeManager.apply(bType, true);
+    }, 100);
   },
 
   renderStep2() {
@@ -136,7 +168,7 @@ const Onboarding = {
 
   selectType(id) {
     AppState.onboarding.businessType = id;
-    this.renderStep();
+    if (typeof ThemeManager !== 'undefined') ThemeManager.apply(id, true);
     SoundManager.play('click');
   },
 

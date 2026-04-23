@@ -14,21 +14,58 @@ const ThemeManager = {
     { id: 'eco', name: 'Eco / Sustainable' },
     { id: 'dark', name: 'Dark Mode' },
     { id: 'retro', name: 'Retro / Vintage' },
-    { id: 'playful', name: 'Playful / Startup' }
+    { id: 'playful', name: 'Playful / Startup' },
+    { id: 'ind-heritage', name: 'Heritage Silk' },
+    { id: 'ind-ayurveda', name: 'Ayurveda Wellness' },
+    { id: 'ind-masala', name: 'Masala Bites' },
+    { id: 'ind-tech', name: 'Tech Bengaluru' },
+    { id: 'ind-jewellery', name: 'Bridal Jewellery' },
+    { id: 'ind-clothes', name: 'Ethnic Boutique' },
+    { id: 'ind-construction', name: 'Infra Builders' },
+    { id: 'ind-dhaba', name: 'Indian Dhaba' },
+    { id: 'ind-cafe', name: 'Cafe / Chai Shop' },
+    { id: 'ind-finedining', name: 'Fine Dining' },
+    { id: 'ind-localshop', name: 'Local Kirana Shop' },
+    { id: 'ind-coaching', name: 'Coaching Classes' },
+    { id: 'ind-school', name: 'Local School' },
+    { id: 'ind-realestate', name: 'Real Estate / Properties' },
+    { id: 'ind-gym', name: 'Fitness / Gym' },
+    { id: 'ind-freelancer', name: 'Freelancer / Portfolio' }
   ],
 
   init() {
     this.currentTheme = AppState.builder.theme || 'minimalist';
-    this.apply(this.currentTheme);
+    this.apply(this.currentTheme, false);
+    if (AppState.builder.customColors) {
+      const canvas = document.getElementById('canvas');
+      Object.entries(AppState.builder.customColors).forEach(([key, val]) => {
+        if (canvas) canvas.style.setProperty(key, val);
+      });
+    }
   },
 
-  apply(themeId) {
+  apply(themeId, resetCustomColors = true) {
     this.currentTheme = themeId;
     const canvas = document.getElementById('canvas');
-    if (canvas) canvas.setAttribute('data-theme', themeId);
+    if (canvas) {
+      canvas.setAttribute('data-theme', themeId);
+      if (resetCustomColors) {
+        canvas.style.removeProperty('--site-primary');
+        canvas.style.removeProperty('--site-accent');
+      }
+    }
     AppState.builder.theme = themeId;
+    if (resetCustomColors) AppState.builder.customColors = {};
     AppState.saveState();
     Utils.emit('theme:change', themeId);
+  },
+
+  setCustomColor(varName, color) {
+    const canvas = document.getElementById('canvas');
+    if (canvas) canvas.style.setProperty(varName, color);
+    AppState.builder.customColors = AppState.builder.customColors || {};
+    AppState.builder.customColors[varName] = color;
+    AppState.saveState();
   },
 
   renderSelector(container) {
@@ -42,7 +79,23 @@ const ThemeManager = {
       eco: ['#f7faf5','#fff','#27ae60','#00b894'],
       dark: ['#0d1117','#161b22','#58a6ff','#7ee787'],
       retro: ['#fef9ef','#fff8e7','#c0392b','#d35400'],
-      playful: ['#fff','#f0f7ff','#805ad5','#ed8936']
+      playful: ['#fff','#f0f7ff','#805ad5','#ed8936'],
+      'ind-heritage': ['#fff9f0','#ffffff','#800000','#d4af37'],
+      'ind-ayurveda': ['#f4f6f0','#ffffff','#4a5d23','#8b5a2b'],
+      'ind-masala': ['#fff5eb','#ffffff','#e65100','#ffb300'],
+      'ind-tech': ['#0b0c10','#1f2833','#45a29e','#66fcf1'],
+      'ind-jewellery': ['#4a0e1e','#2a0811','#d4af37','#fdf1d6'],
+      'ind-clothes': ['#fffbfb','#ffffff','#d84672','#ff9eb5'],
+      'ind-construction': ['#f4f5f7','#ffffff','#2c3e50','#f39c12'],
+      'ind-dhaba': ['#fffaf0','#ffffff','#d35400','#e67e22'],
+      'ind-cafe': ['#fdf8f5','#ffffff','#5c4033','#8b5a2b'],
+      'ind-finedining': ['#0a0a0a','#1a1a1a','#d4af37','#f9eed3'],
+      'ind-localshop': ['#f0f4f8','#ffffff','#102a43','#fdb813'],
+      'ind-coaching': ['#f1f5f9','#ffffff','#0f172a','#3b82f6'],
+      'ind-school': ['#f0fdf6','#ffffff','#166534','#facc15'],
+      'ind-realestate': ['#f8fafc','#ffffff','#1e3a8a','#e2e8f0'],
+      'ind-gym': ['#171717','#262626','#ef4444','#dc2626'],
+      'ind-freelancer': ['#f5f3ff','#ffffff','#6d28d9','#a78bfa']
     };
 
     container.innerHTML = `<div class="theme-selector">

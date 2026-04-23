@@ -369,6 +369,18 @@ const Builder = {
             <div class="panel-section-title">Choose Theme</div>
             <div id="theme-selector-container"></div>
           </div>
+          <div class="panel-section">
+            <div class="panel-section-title">Adjust Colors</div>
+            <div class="onboarding-form-group">
+              <label class="label">Primary Color</label>
+              <input type="color" class="input" id="custom-primary" style="height:40px;padding:4px;cursor:pointer">
+            </div>
+            <div class="onboarding-form-group">
+              <label class="label">Accent Color</label>
+              <input type="color" class="input" id="custom-accent" style="height:40px;padding:4px;cursor:pointer">
+            </div>
+            <p style="font-size:11px;color:var(--builder-text-muted);margin-top:10px;">Select a new theme above to reset colors.</p>
+          </div>
         </div>
         <div id="tab-site-seo" class="tab-pane" style="display:none"></div>`;
 
@@ -377,6 +389,19 @@ const Builder = {
       // Render theme selector
       const themeContainer = this.panelBody.querySelector('#theme-selector-container');
       if (themeContainer) ThemeManager.renderSelector(themeContainer);
+
+      const customPrimary = this.panelBody.querySelector('#custom-primary');
+      const customAccent = this.panelBody.querySelector('#custom-accent');
+      if (customPrimary) {
+        const primaryVal = getComputedStyle(canvas).getPropertyValue('--site-primary').trim();
+        customPrimary.value = primaryVal.startsWith('#') ? primaryVal : '#ffffff';
+        customPrimary.addEventListener('input', (e) => ThemeManager.setCustomColor('--site-primary', e.target.value));
+      }
+      if (customAccent) {
+        const accentVal = getComputedStyle(canvas).getPropertyValue('--site-accent').trim();
+        customAccent.value = accentVal.startsWith('#') ? accentVal : '#ffffff';
+        customAccent.addEventListener('input', (e) => ThemeManager.setCustomColor('--site-accent', e.target.value));
+      }
 
       // Render SEO panel
       const seoContainer = this.panelBody.querySelector('#tab-site-seo');
@@ -651,7 +676,20 @@ const Builder = {
     this.addComponent('hero');
     this.addComponent('features');
     this.addComponent('about');
-    this.addComponent('pricing');
+    
+    const bType = AppState.onboarding.businessType || '';
+    if (bType.includes('dhaba') || bType.includes('cafe') || bType.includes('finedining')) {
+      this.addComponent('menu'); // Restaurant menu component
+    } else if (bType.includes('clothes') || bType.includes('localshop')) {
+      this.addComponent('products'); // Products component
+    } else {
+      this.addComponent('pricing'); // Generic pricing
+    }
+    
+    if (bType.includes('freelancer') || bType.includes('heritage') || bType.includes('realestate')) {
+      this.addComponent('gallery'); // Gallery wrapper for portfolios and weddings
+    }
+
     this.addComponent('contact');
     this.addComponent('footer');
     this.deselectAll();
@@ -709,8 +747,24 @@ const Builder = {
       const enabled = SoundManager.toggle();
       document.getElementById('btn-sound').classList.toggle('muted', !enabled);
     });
+    document.getElementById('btn-home')?.addEventListener('click', () => {
+      if (typeof Landing !== 'undefined') Landing.showLanding();
+    });
     document.getElementById('btn-new')?.addEventListener('click', () => {
-      if (confirm('Start over? This will clear your current design.')) { localStorage.clear(); location.reload(); }
+      if (confirm('Start over? This will clear your current design.')) { 
+        localStorage.removeItem('webflow_onboarding');
+        localStorage.removeItem('webflow_builder');
+        localStorage.removeItem('webflow_onboarding_completed');
+        
+        // Ensure state is empty in memory
+        AppState.builder.pages = [];
+        AppState.builder.customColors = {};
+        AppState.onboarding = { colors: {} };
+        
+        // Hard redirect
+        const cleanUrl = window.location.href.split('?')[0].split('#')[0];
+        window.location.href = cleanUrl + '?reset=true&t=' + Date.now(); 
+      }
     });
 
     // Quick-access Theme & SEO buttons (always visible in toolbar)

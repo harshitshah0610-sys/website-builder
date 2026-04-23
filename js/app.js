@@ -9,8 +9,12 @@ document.addEventListener('DOMContentLoaded', () => {
   // Init sound manager
   SoundManager.init();
 
-  // Init onboarding (will auto-skip if already completed, and init Builder)
-  Onboarding.init();
+  // Init Landing Page (will route to Onboarding/Builder based on auth)
+  if (typeof Landing !== 'undefined') {
+    Landing.init();
+  } else {
+    Onboarding.init();
+  }
 
   // Init Panel Manager (resize, collapse, swap)
   PanelManager.init();

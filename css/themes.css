@@ -310,3 +310,236 @@
   font-size: var(--text-xs);
   text-align: center;
 }
+
+/* ── 11. Heritage Silk (Indian) ── */
+[data-theme="ind-heritage"] {
+  --site-bg:           #fff9f0;
+  --site-surface:      #ffffff;
+  --site-text:         #331a1a;
+  --site-text-muted:   #735656;
+  --site-heading:      #1a0505;
+  --site-primary:      #800000;
+  --site-primary-rgb:  128, 0, 0;
+  --site-secondary:    #a52a2a;
+  --site-accent:       #d4af37;
+  --site-accent-rgb:   212, 175, 55;
+  --site-border:       #e6d5c3;
+  --site-radius:       8px;
+  --site-radius-lg:    16px;
+  --site-shadow:       0 4px 15px rgba(128,0,0,0.08);
+  --site-shadow-lg:    0 12px 35px rgba(128,0,0,0.12);
+  --site-font-body:    'Inter', serif;
+  --site-font-heading: 'Outfit', serif;
+  --site-nav-bg:       rgba(255,249,240,0.95);
+  --site-nav-text:     #331a1a;
+  --site-hero-bg:      linear-gradient(135deg, #1a0505, #800000);
+  --site-footer-bg:    #1a0505;
+  --site-footer-text:  #a52a2a;
+  --site-btn-radius:   4px;
+}
+
+/* ── 12. Ayurveda Wellness (Indian) ── */
+[data-theme="ind-ayurveda"] {
+  --site-bg:           #f4f6f0;
+  --site-surface:      #ffffff;
+  --site-text:         #2a3319;
+  --site-text-muted:   #687353;
+  --site-heading:      #1c260d;
+  --site-primary:      #4a5d23;
+  --site-primary-rgb:  74, 93, 35;
+  --site-secondary:    #6b8e23;
+  --site-accent:       #8b5a2b;
+  --site-accent-rgb:   139, 90, 43;
+  --site-border:       #d8e0cc;
+  --site-radius:       24px;
+  --site-radius-lg:    40px;
+  --site-shadow:       0 2px 10px rgba(74,93,35,0.08);
+  --site-shadow-lg:    0 10px 30px rgba(74,93,35,0.1);
+  --site-font-body:    'Inter', sans-serif;
+  --site-font-heading: 'Outfit', sans-serif;
+  --site-nav-bg:       rgba(244,246,240,0.9);
+  --site-nav-text:     #2a3319;
+  --site-hero-bg:      linear-gradient(135deg, #1c260d, #4a5d23);
+  --site-footer-bg:    #1c260d;
+  --site-footer-text:  #687353;
+  --site-btn-radius:   50px;
+}
+
+/* ── 13. Masala Bites (Indian) ── */
+[data-theme="ind-masala"] {
+  --site-bg:           #fff5eb;
+  --site-surface:      #ffffff;
+  --site-text:         #331400;
+  --site-text-muted:   #8a4b1e;
+  --site-heading:      #260c00;
+  --site-primary:      #e65100;
+  --site-primary-rgb:  230, 81, 0;
+  --site-secondary:    #ff7043;
+  --site-accent:       #ffb300;
+  --site-accent-rgb:   255, 179, 0;
+  --site-border:       #ffdec2;
+  --site-radius:       12px;
+  --site-radius-lg:    20px;
+  --site-shadow:       0 4px 12px rgba(230,81,0,0.1);
+  --site-shadow-lg:    0 12px 30px rgba(230,81,0,0.15);
+  --site-font-body:    'Inter', sans-serif;
+  --site-font-heading: 'Outfit', sans-serif;
+  --site-nav-bg:       rgba(255,245,235,0.95);
+  --site-nav-text:     #331400;
+  --site-hero-bg:      linear-gradient(135deg, #260c00, #e65100);
+  --site-footer-bg:    #260c00;
+  --site-footer-text:  #8a4b1e;
+  --site-btn-radius:   12px;
+}
+
+/* ── 14. Tech Bengaluru (Indian) ── */
+[data-theme="ind-tech"] {
+  --site-bg:           #0b0c10;
+  --site-surface:      #1f2833;
+  --site-text:         #c5c6c7;
+  --site-text-muted:   #a0a3a6;
+  --site-heading:      #ffffff;
+  --site-primary:      #45a29e;
+  --site-primary-rgb:  69, 162, 158;
+  --site-secondary:    #66fcf1;
+  --site-accent:       #66fcf1;
+  --site-accent-rgb:   102, 252, 241;
+  --site-border:       #1f2833;
+  --site-radius:       4px;
+  --site-radius-lg:    8px;
+  --site-shadow:       0 4px 15px rgba(102,252,241,0.1);
+  --site-shadow-lg:    0 10px 40px rgba(102,252,241,0.2);
+  --site-font-body:    'Inter', sans-serif;
+  --site-font-heading: 'Outfit', sans-serif;
+  --site-nav-bg:       rgba(11,12,16,0.95);
+  --site-nav-text:     #c5c6c7;
+  --site-hero-bg:      linear-gradient(135deg, #0b0c10, #1f2833);
+  --site-footer-bg:    #0b0c10;
+  --site-footer-text:  #a0a3a6;
+  --site-btn-radius:   4px;
+}
+
+/* ── 15. Indian Dhaba ── */
+[data-theme="ind-dhaba"] {
+  --site-bg:           #fffaf0;
+  --site-surface:      #ffffff;
+  --site-text:         #3e2723;
+  --site-heading:      #1a0f00;
+  --site-primary:      #d35400;
+  --site-primary-rgb:  211, 84, 0;
+  --site-accent:       #e67e22;
+  --site-border:       #e8d3b8;
+  --site-font-body:    'Inter', sans-serif;
+  --site-font-heading: 'Outfit', sans-serif;
+  --site-hero-bg:      linear-gradient(135deg, #3e2723, #d35400);
+  --site-radius:       16px;
+}
+
+/* ── 16. Cafe / Chai Shop ── */
+[data-theme="ind-cafe"] {
+  --site-bg:           #fdf8f5;
+  --site-surface:      #ffffff;
+  --site-text:         #4a3b32;
+  --site-heading:      #2b1a10;
+  --site-primary:      #5c4033;
+  --site-primary-rgb:  92, 64, 51;
+  --site-accent:       #8b5a2b;
+  --site-border:       #e5d9cc;
+  --site-hero-bg:      linear-gradient(135deg, #2b1a10, #5c4033);
+  --site-radius:       8px;
+}
+
+/* ── 17. Fine Dining ── */
+[data-theme="ind-finedining"] {
+  --site-bg:           #0a0a0a;
+  --site-surface:      #1a1a1a;
+  --site-text:         #e0e0e0;
+  --site-heading:      #ffffff;
+  --site-primary:      #d4af37;
+  --site-primary-rgb:  212, 175, 55;
+  --site-accent:       #f9eed3;
+  --site-border:       #333333;
+  --site-hero-bg:      linear-gradient(135deg, #000, #1a1a1a);
+  --site-font-heading: 'Outfit', serif;
+  --site-radius:       0px;
+}
+
+/* ── 18. Local Kirana Shop ── */
+[data-theme="ind-localshop"] {
+  --site-bg:           #f0f4f8;
+  --site-surface:      #ffffff;
+  --site-text:         #243b53;
+  --site-primary:      #102a43;
+  --site-primary-rgb:  16, 42, 67;
+  --site-accent:       #fdb813;
+  --site-border:       #d9e2ec;
+  --site-hero-bg:      linear-gradient(135deg, #102a43, #243b53);
+  --site-radius:       4px;
+}
+
+/* ── 19. Coaching Classes ── */
+[data-theme="ind-coaching"] {
+  --site-bg:           #f1f5f9;
+  --site-surface:      #ffffff;
+  --site-text:         #334155;
+  --site-primary:      #0f172a;
+  --site-primary-rgb:  15, 23, 42;
+  --site-accent:       #3b82f6;
+  --site-border:       #e2e8f0;
+  --site-hero-bg:      linear-gradient(135deg, #0f172a, #1e293b);
+  --site-radius:       12px;
+}
+
+/* ── 20. Local School ── */
+[data-theme="ind-school"] {
+  --site-bg:           #f0fdf6;
+  --site-surface:      #ffffff;
+  --site-text:         #166534;
+  --site-primary:      #14532d;
+  --site-primary-rgb:  20, 83, 45;
+  --site-accent:       #facc15;
+  --site-border:       #bbf7d0;
+  --site-hero-bg:      linear-gradient(135deg, #14532d, #166534);
+  --site-radius:       8px;
+}
+
+/* ── 21. Real Estate ── */
+[data-theme="ind-realestate"] {
+  --site-bg:           #f8fafc;
+  --site-surface:      #ffffff;
+  --site-text:         #1e293b;
+  --site-primary:      #1e3a8a;
+  --site-primary-rgb:  30, 58, 138;
+  --site-accent:       #e2e8f0;
+  --site-border:       #cbd5e1;
+  --site-hero-bg:      linear-gradient(135deg, #1e3a8a, #1d4ed8);
+  --site-font-heading: 'Outfit', sans-serif;
+  --site-radius:       4px;
+}
+
+/* ── 22. Gym / Fitness ── */
+[data-theme="ind-gym"] {
+  --site-bg:           #171717;
+  --site-surface:      #262626;
+  --site-text:         #d4d4d4;
+  --site-heading:      #ffffff;
+  --site-primary:      #ef4444;
+  --site-primary-rgb:  239, 68, 68;
+  --site-accent:       #dc2626;
+  --site-border:       #404040;
+  --site-hero-bg:      linear-gradient(135deg, #000, #171717);
+  --site-radius:       0px;
+}
+
+/* ── 23. Freelancer ── */
+[data-theme="ind-freelancer"] {
+  --site-bg:           #f5f3ff;
+  --site-surface:      #ffffff;
+  --site-text:         #4c1d95;
+  --site-primary:      #6d28d9;
+  --site-primary-rgb:  109, 40, 217;
+  --site-accent:       #a78bfa;
+  --site-border:       #ddd6fe;
+  --site-hero-bg:      linear-gradient(135deg, #4c1d95, #6d28d9);
+  --site-radius:       24px;
+}

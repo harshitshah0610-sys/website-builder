@@ -28,10 +28,26 @@ const ComponentRegistry = {
       category: 'Sections',
       template(data) {
         const d = AppState.onboarding;
+        const copyMap = {
+          'ind-dhaba': { t: 'Authentic Indian Flavors', d: 'Experience the real taste of the highway.' },
+          'ind-cafe': { t: 'Your Perfect Cup of Chai', d: 'Take a break and relax with our premium blends.' },
+          'ind-finedining': { t: 'Exquisite Culinary Journey', d: 'Taste luxury in every single bite.' },
+          'ind-clothes': { t: 'Elegant Ethnic Wear', d: 'Discover the beauty of traditional designs.' },
+          'ind-localshop': { t: 'Your Trusted Local Store', d: 'Daily essentials delivered with a smile.' },
+          'ind-coaching': { t: 'Shape Your Future', d: 'Expert guidance for top competitive exams.' },
+          'ind-school': { t: 'Excellence in Education', d: 'Nurturing young minds for tomorrow.' },
+          'ind-realestate': { t: 'Find Your Dream Home', d: 'Premium properties across the city.' },
+          'ind-gym': { t: 'Transform Your Body', d: 'Join the ultimate fitness revolution today.' },
+          'ind-ayurveda': { t: 'Holistic Mind & Body', d: 'Find inner peace with ancient practices.' },
+          'ind-heritage': { t: 'Your Perfect Wedding', d: 'Crafting unforgettable memories for your big day.' },
+          'ind-freelancer': { t: 'Creative Professional', d: 'Delivering exceptional digital experiences.' }
+        };
+        const copy = copyMap[d.businessType] || { t: d.tagline || 'Build Something Amazing', d: d.description || 'Create beautiful, responsive websites in minutes.' };
+        
         return `<section class="wf-hero wf-component wf-media-target" data-component-name="Hero" data-editable-section="true">
           <div class="wf-hero-content fx-3d-depth">
-            <h1 data-editable="text">${d.tagline || 'Build Something Amazing'}</h1>
-            <p data-editable="text">${d.description || 'Create beautiful, responsive websites in minutes.'}</p>
+            <h1 data-editable="text">${copy.t}</h1>
+            <p data-editable="text">${copy.d}</p>
             <div class="wf-hero-actions">
               <button class="wf-hero-btn primary fx-depth-layer" data-sound-click="click" data-editable="text">Get Started</button>
               <button class="wf-hero-btn secondary fx-depth-layer" data-sound-hover="hover" data-editable="text">Learn More</button>
@@ -47,15 +63,25 @@ const ComponentRegistry = {
       icon: Icons.get('features'),
       category: 'Sections',
       template() {
-        const features = [
+        const d = AppState.onboarding;
+        let features = [
           { icon: 'hero', title: 'Lightning Fast', desc: 'Optimized performance for scale.' },
           { icon: 'glow', title: 'Beautiful Design', desc: 'Stunning templates for your brand.' },
           { icon: 'about', title: 'Secure & Reliable', desc: 'Enterprise-grade security.' }
         ];
+        
+        if (d.businessType?.includes('dhaba') || d.businessType?.includes('cafe') || d.businessType?.includes('finedining')) {
+          features = [{ icon: 'hero', title: 'Fresh Ingredients', desc: 'Locally sourced.' }, { icon: 'glow', title: 'Master Chefs', desc: 'Authentic recipes.' }, { icon: 'about', title: 'Great Ambience', desc: 'Perfect dining.' }];
+        } else if (d.businessType?.includes('school') || d.businessType?.includes('coaching')) {
+          features = [{ icon: 'features', title: 'Expert Faculty', desc: 'Years of experience.' }, { icon: 'hero', title: 'Smart Classes', desc: 'Interactive learning.' }, { icon: 'about', title: 'Results Driven', desc: 'Top rankings.' }];
+        } else if (d.businessType?.includes('gym') || d.businessType?.includes('ayurveda')) {
+          features = [{ icon: 'hero', title: 'Pro Trainers', desc: 'Personalized plans.' }, { icon: 'features', title: 'Modern Eqpt', desc: 'Best in class.' }, { icon: 'glow', title: 'Flexible Timings', desc: 'Open 24/7.' }];
+        }
+
         return `<section class="wf-features wf-component" data-component-name="Features" data-editable-section="true">
           <div class="wf-features-header">
             <h2 data-editable="text">Why Choose Us</h2>
-            <p data-editable="text">Everything you need to succeed, all in one place.</p>
+            <p data-editable="text">Everything you need, right here.</p>
           </div>
           <div class="wf-features-grid fx-stagger" data-editable-list="features">
             ${features.map(f => `
@@ -97,8 +123,8 @@ const ComponentRegistry = {
       category: 'Sections',
       template() {
         const plans = [
-          { name: 'Starter', price: '$29', features: ['5 Projects', '10GB Storage', 'Support'] },
-          { name: 'Professional', price: '$79', features: ['Unlimited Projects', '100GB Storage', 'Priority Support'], featured: true }
+          { name: 'Starter', price: '₹999', features: ['Basic Access', 'Standard Support', 'Validity 30 Days'] },
+          { name: 'Premium', price: '₹2499', features: ['Full Access', 'Priority Support', 'Validity 90 Days'], featured: true }
         ];
         return `<section class="wf-pricing wf-component" data-component-name="Pricing" data-editable-section="true">
           <div class="wf-pricing-header"><h2 data-editable="text">Simple Pricing</h2></div>
@@ -112,6 +138,59 @@ const ComponentRegistry = {
                   ${p.features.map(f => `<li><span class="plan-feature-icon">${Icons.get('check', 14, 2)}</span> <span data-editable="text">${f}</span></li>`).join('')}
                 </ul>
                 <button class="wf-hero-btn ${p.featured ? 'primary' : 'secondary'}" style="width:100%" data-editable="text">Choose Plan</button>
+              </div>
+            `).join('')}
+          </div>
+        </section>`;
+      },
+      defaults: {}
+    },
+    
+    menu: {
+      name: 'Restaurant Menu',
+      icon: Icons.get('gallery'),
+      category: 'Sections',
+      template() {
+        const items = [
+          { name: 'Paneer Butter Masala', desc: 'Rich and creamy curry.', price: '₹250' },
+          { name: 'Chicken Tikka', desc: 'Tandoori roasted skewers.', price: '₹350' },
+          { name: 'Garlic Naan', desc: 'Butter layered flatbread.', price: '₹60' },
+          { name: 'Special Thali', desc: 'Complete traditional meal.', price: '₹400' }
+        ];
+        return `<section class="wf-pricing wf-component" data-component-name="Menu" data-editable-section="true">
+          <div class="wf-pricing-header"><h2 data-editable="text">Our Menu</h2></div>
+          <div class="wf-pricing-grid" data-editable-list="menu" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr))">
+            ${items.map(p => `
+              <div class="wf-pricing-card fx-slide-up" style="text-align:left;" data-editable-item="true">
+                <div style="display:flex;justify-content:space-between;align-items:center;">
+                  <h3 data-editable="text" style="margin:0">${p.name}</h3>
+                  <div data-editable="text" style="color:var(--site-primary);font-weight:700">${p.price}</div>
+                </div>
+                <p data-editable="text" style="color:var(--site-text-muted);font-size:0.9rem;margin-top:10px">${p.desc}</p>
+              </div>
+            `).join('')}
+          </div>
+        </section>`;
+      },
+      defaults: {}
+    },
+
+    products: {
+      name: 'E-Commerce Products',
+      icon: Icons.get('gallery'),
+      category: 'Sections',
+      template() {
+        return `<section class="wf-gallery wf-component" data-component-name="Products" data-editable-section="true" style="background:var(--site-surface)">
+          <div class="wf-gallery-header"><h2 data-editable="text">Featured Products</h2></div>
+          <div class="wf-gallery-grid" data-editable-list="products" style="gap:2rem">
+            ${[1, 2, 3].map(i => `
+              <div class="wf-gallery-item fx-3d-tilt" data-editable-item="true" style="overflow:visible;background:transparent;">
+                <div class="wf-media-target" style="height:250px;width:100%;border-radius:var(--site-radius);background:var(--site-bg);margin-bottom:1rem;"></div>
+                <h3 data-editable="text" style="margin:0">Premium Collection ${i}</h3>
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px">
+                  <span data-editable="text" style="font-weight:bold;color:var(--site-primary)">₹1299</span>
+                  <button class="wf-hero-btn primary" style="padding:5px 15px;font-size:0.8rem" data-editable="text">Add to Cart</button>
+                </div>
               </div>
             `).join('')}
           </div>
